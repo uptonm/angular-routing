@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {}
 
-  onButtonPress() {
+  onLoadServers() {
     this.router.navigate(['/servers']);
   }
 }
