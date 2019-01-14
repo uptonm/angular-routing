@@ -14,23 +14,27 @@ export class EditServerComponent implements OnInit, OnDestroy {
     status: 'See name'
   };
   sub: any;
+  subQuery: any;
+  allowEdit: Boolean = false;
 
   constructor(
     private serversService: ServersService,
     private router: Router,
     private route: ActivatedRoute
-  ) {
-    router.events.subscribe((val: NavigationEnd) => {
-      if (val.url) {
-      }
-    });
-  }
+  ) {}
 
   ngOnInit() {
     const id = +this.route.snapshot.params['id'] - 1;
+    this.allowEdit = +this.route.snapshot.queryParams['allowEdit'] === 1;
+    console.log(this.allowEdit);
     this.server = this.serversService.getServer(id);
+
     this.sub = this.route.params.subscribe((params: Params) => {
       this.server = this.serversService.getServer(+params['id']);
+    });
+
+    this.subQuery = this.route.queryParams.subscribe((queryParams: Params) => {
+      this.allowEdit = +queryParams['allowEdit'] === 1;
     });
   }
 
@@ -43,5 +47,6 @@ export class EditServerComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+    this.subQuery.unsubscribe();
   }
 }

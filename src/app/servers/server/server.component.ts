@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { ServersService } from '../servers.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-server',
@@ -14,6 +14,7 @@ export class ServerComponent implements OnInit, OnDestroy {
 
   constructor(
     private serversService: ServersService,
+    private router: Router,
     private route: ActivatedRoute
   ) {}
 
@@ -27,5 +28,12 @@ export class ServerComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  onEdit() {
+    this.router.navigate(['edit'], {
+      relativeTo: this.route,
+      queryParamsHandling: 'merge'
+    });
   }
 }
