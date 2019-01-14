@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+.btn {
+  font-family: 'Montserrat', sans-serif;
+  display: inline-block;
+  font-weight: 700;
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase;
+}
