@@ -20,7 +20,7 @@ export class UserComponent implements OnInit, OnDestroy {
       name: this.route.snapshot.params['name']
     };
     // Subscribe to route changes that will not call for a refresh
-    this.route.params.subscribe((params: Params) => {
+    this.sub = this.route.params.subscribe((params: Params) => {
       this.user.id = params['id'];
       this.user.name = params['name'];
     });
