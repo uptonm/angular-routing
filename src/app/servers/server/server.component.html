@@ -1,2 +1,14 @@
 <h5>{{ server.name }}</h5>
-<p>Server status is {{ server.status }}</p>
+<p>
+  Server status is
+  <code [ngClass]="{ online: server.status === 'online' }">{{
+    server.status
+  }}</code>
+</p>
+<button
+  class="btn btn-primary"
+  [routerLink]="['edit']"
+  [queryParams]="{ allowEdit: 1 }"
+>
+  Edit Server
+</button>
